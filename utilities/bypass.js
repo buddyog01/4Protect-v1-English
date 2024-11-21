@@ -7,7 +7,7 @@ const config = require("../config")
 module.exports = {
     name: 'bypass',
     usage: 'bypass',
-    description: `Permet de voir quelles rank peuvent bypass des permissions.`,
+    description: `Allows you to see which ranks can bypass permissions.`,
     async execute(client, message, args) {
 
         let color = cl.fetch(`color_${message.guild.id}`)
@@ -25,9 +25,9 @@ module.exports = {
 **\`antichannel create | Owner | Wl\`**
 **\`antichannel delete | Owner\`**
 **\`antichannel update | Owner\`**
-**\`antirôle create | Owner\`**
-**\`antirôle delete | Owner\`**
-**\`antirôle update | Owner\`**
+**\`antirole create | Owner\`**
+**\`antirole delete | Owner\`**
+**\`antirole update | Owner\`**
 **\`antiwebhook | Owner\`**
 `)
 
