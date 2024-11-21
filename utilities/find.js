@@ -9,7 +9,7 @@ const moment = require('moment')
 module.exports = {
     name: 'find',
     usage: 'find',
-    description: `Permet de chercher un membre en vocal dans le serveur.`,
+    description: `Allows you to search for a member by voice in the server.`,
     async execute(client, message, args) {
 
         let color = cl.fetch(`color_${message.guild.id}`)
@@ -18,13 +18,13 @@ module.exports = {
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
 
         let embed = new Discord.MessageEmbed()
-            .setTitle("Recherche vocal")
+            .setTitle("Voice search")
             .setColor(color)
             .addField(
-                `Le membre est en vocal:`,
+                `The member is in Voice Channel:`,
                 member.voice.channel
                     ? `<#${member.voice.channel.id}>`
-                    : `Le membre n'est pas en vocal.`,
+                    : `The member is not in a voice channel.`,
                 true
             )
         message.channel.send({ embeds: [embed] })

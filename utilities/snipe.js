@@ -25,7 +25,7 @@ moment.locale('fr');
 module.exports = {
     name: 'snipe',
     usage: 'snipe',
-    description: `Permet d'afficher le dernier message supprimé sur le serveur`,
+    description: `Allows you to display the last message deleted on the server`,
     async execute(client, message, args) {
 
         let color = cl.fetch(`color_${message.guild.id}`);
@@ -34,7 +34,7 @@ module.exports = {
         let isLinkall = false;
 
         const msg = client.snipes.get(message.channel.id);
-        if (!msg) return message.channel.send("Aucun message n'a été supprimé récemment !");
+        if (!msg) return message.channel.send("No messages have been deleted recently!");
 
         links.forEach(l => {
             if (msg.content.includes(l)) {
@@ -53,7 +53,7 @@ module.exports = {
         let temps;
 
         if (now.isSame(messageTime, 'day')) {
-            temps = `Aujourd'hui à ${messageTime.format('HH:mm')}`;
+            temps = `Today at ${messageTime.format('HH:mm')}`;
         } else {
             temps = messageTime.format('DD/MM/YYYY à HH:mm');
         }

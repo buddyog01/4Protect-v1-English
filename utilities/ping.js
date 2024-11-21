@@ -8,7 +8,7 @@ const footer = config.app.footer
 
 module.exports = {
     name: 'ping',
-    description: `Permet de voir la latence du bot en milli-secondes.`,
+    description: `Allows you to see the bot latency in milliseconds.`,
 
     async execute(client, message, args) {
 
@@ -16,7 +16,7 @@ module.exports = {
         if (color == null) color = config.app.color
 
         const embed = new Discord.MessageEmbed()
-        embed.setTitle("Latence du bot")
+        embed.setTitle("Bot latency")
         embed.addField('BOT', client.ws.ping + 'ms', true)
         embed.setColor(color)
         message.channel.send({ embeds: [embed] }).then(async msg => {

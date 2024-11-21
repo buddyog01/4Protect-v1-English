@@ -11,13 +11,13 @@ moment.locale('fr');
 module.exports = {
     name: 'serveur',
     usage: 'serveur',
-    description: `Permet d'afficher des informations relatives au serveur`,
+    description: `Allows you to display server information`,
     async execute(client, message, args) {
         let color = cl.fetch(`color_${message.guild.id}`);
         if (color == null) color = config.app.color;
 
         if (!args[0]) {
-            return message.channel.send("Veuillez fournir un argument valide (pic, banner, info).");
+            return message.channel.send("Please provide a valid argument (pic, banner, info).");
         }
 
         if (args[0] === "pic") {
@@ -32,7 +32,7 @@ module.exports = {
                 const nopic = new MessageEmbed()
                     .setTitle(`${message.guild.name}`)
                     .setColor(color)
-                    .setDescription(`Ce serveur ne possède pas d'avatar`);
+                    .setDescription(`This server does not have an avatar`);
                 message.channel.send({ embeds: [nopic] });
             }
         } else if (args[0] === "banner") {
@@ -47,7 +47,7 @@ module.exports = {
                 const nobanner = new MessageEmbed()
                     .setTitle(`${message.guild.name}`)
                     .setColor(color)
-                    .setDescription('Ce serveur ne possède pas de bannière');
+                    .setDescription('This server does not have a banner');
                 message.channel.send({ embeds: [nobanner] });
             }
         } else if (args[0] === "info") {
@@ -59,10 +59,10 @@ module.exports = {
             };
 
             const verifLevels = {
-                NONE: "Aucune",
-                LOW: "Faible",
-                MEDIUM: "Moyen",
-                HIGH: "Élevé",
+                NONE: "None",
+                LOW: "Weak",
+                MEDIUM: "Average",
+                HIGH: "High",
                 VERY_HIGH: "Maximum",
             };
 
@@ -72,28 +72,28 @@ module.exports = {
             const emojisGuild = message.guild.emojis.cache;
 
             let desc = message.guild.description;
-            if (desc == null) desc = "Le serveur ne possède pas de description !";
+            if (desc == null) desc = "The server does not have a description !";
 
             const embed = new MessageEmbed()
                 .setColor(color)
                 .setThumbnail(message.guild.iconURL({ dynamic: true }))
                 .setImage(message.guild.bannerURL({ dynamic: true, size: 512 }))
-                .setTitle(`Informations sur \`${message.guild.name}\``)
+                .setTitle(`Information about \`${message.guild.name}\``)
                 .setDescription(`**Description**\n ${desc}`)
                 .addFields(
-                    { name: `${emote.utilitaire.id} ID du serveur`, value: `${message.guild.id}`, inline: true },
-                    { name: `${emote.utilitaire.blackcrown} Propriétaire`, value: `<@${message.guild.ownerId}>`, inline: true },
-                    { name: `${emote.utilitaire.id} ID Propriétaire`, value: `${message.guild.ownerId}`, inline: true },
-                    { name: `${emote.utilitaire.membres} Nombre de Membres`, value: `${message.guild.memberCount || '0'}`, inline: true },
-                    { name: "Nombre de Boosts", value: `${message.guild.premiumSubscriptionCount || '0'}`, inline: true },
-                    { name: `${emote.utilitaire.boosts} Niveau de Boost`, value: `${premiumTier[message.guild.premiumTier]}`, inline: true },
-                    { name: `${emote.utilitaire.bots} Nombre de Bots`, value: `${membersGuild.filter(member => member.user.bot).size}`, inline: true },
-                    { name: `${emote.utilitaire.iconrole} Nombre de Rôles`, value: `${rolesGuild.length}`, inline: true },
-                    { name: `${emote.utilitaire.salon} Nombres de Salons`, value: `${channelsGuild.size}`, inline: true },
-                    { name: `${emote.utilitaire.emotes} Nombre d'Emojis`, value: `${emojisGuild.size}`, inline: true },
-                    { name: `${emote.utilitaire.loading} Date de création`, value: `${moment(message.guild.createdAt).format('LLLL')}`, inline: true },
-                    { name: `${emote.utilitaire.link} URL Personnalisée`, value: message.guild.vanityURLCode ? `discord.gg/${message.guild.vanityURLCode}` : `Le serveur ne possède pas d'URL`, inline: true },
-                    { name: `${emote.utilitaire.iconsettings} Vérification du serveur`, value: `${verifLevels[message.guild.verificationLevel]}`, inline: true }
+                    { name: `${emote.utilitaire.id} ID of Server`, value: `${message.guild.id}`, inline: true },
+                    { name: `${emote.utilitaire.blackcrown} Owner`, value: `<@${message.guild.ownerId}>`, inline: true },
+                    { name: `${emote.utilitaire.id} ID of Owner`, value: `${message.guild.ownerId}`, inline: true },
+                    { name: `${emote.utilitaire.membres} Number of Members`, value: `${message.guild.memberCount || '0'}`, inline: true },
+                    { name: "Number of Boosts", value: `${message.guild.premiumSubscriptionCount || '0'}`, inline: true },
+                    { name: `${emote.utilitaire.boosts} Boost Level`, value: `${premiumTier[message.guild.premiumTier]}`, inline: true },
+                    { name: `${emote.utilitaire.bots} Number of Bots`, value: `${membersGuild.filter(member => member.user.bot).size}`, inline: true },
+                    { name: `${emote.utilitaire.iconrole} Number of Roles`, value: `${rolesGuild.length}`, inline: true },
+                    { name: `${emote.utilitaire.salon} Number of Channels`, value: `${channelsGuild.size}`, inline: true },
+                    { name: `${emote.utilitaire.emotes} Number of Emojis`, value: `${emojisGuild.size}`, inline: true },
+                    { name: `${emote.utilitaire.loading} Date of Creation`, value: `${moment(message.guild.createdAt).format('LLLL')}`, inline: true },
+                    { name: `${emote.utilitaire.link} Vanity URL`, value: message.guild.vanityURLCode ? `discord.gg/${message.guild.vanityURLCode}` : `This Server doesn't have a Vanity URL`, inline: true },
+                    { name: `${emote.utilitaire.iconsettings} Verification Level`, value: `${verifLevels[message.guild.verificationLevel]}`, inline: true }
                 )
                 .setFooter({ text: `${config.app.footer}` });
             message.channel.send({ embeds: [embed] });
