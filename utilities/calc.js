@@ -7,14 +7,14 @@ const footer = config.app.footer;
 module.exports = {
     name: 'calc',
     usage: 'calc <calcul>',
-    description: `Permet d'effectuer un calcul.`,
+    description: `Allows you to perform a calculation.`,
     execute(client, message, args) {
 
         let color = cl.fetch(`color_${message.guild.id}`);
         if (color == null) color = config.app.color;
 
         if (!args[0]) {
-            return message.channel.send("Veuillez fournir un calcul.");
+            return message.channel.send("Please provide a calculation.");
         }
 
         const expression = args.join(' ');
@@ -23,15 +23,15 @@ module.exports = {
             const result = eval(expression);
 
             const embed = new Discord.MessageEmbed()
-                .setTitle("Résultat")
-                .setDescription(`Ton calcul \`${expression}\` donne comme résultat : **${result}**`)
+                .setTitle("Result")
+                .setDescription(`Your calculation \`${expression}\` gives the result : **${result}**`)
                 .setColor(color)
                 .setFooter(footer);
 
             message.channel.send({ embeds: [embed] });
         } catch (error) {
             
-            message.channel.send("Pour les calculs: 1x1 = 1*1 | 1:1 = 1/1");
+            message.channel.send("For calculations: 1x1 = 1*1 | 1:1 = 1/1");
         }
     }
 };
