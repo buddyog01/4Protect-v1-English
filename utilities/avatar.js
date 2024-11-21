@@ -7,7 +7,7 @@ const config = require("../config");
 module.exports = {
     name: 'pic',
     usage: 'pic',
-    description: `Permet d'afficher l'avatar d'un utilisateur.`,
+    description: `Allows you to display a user's avatar.`,
     async execute(client, message, args) {
 
         let color = cl.fetch(`color_${message.guild.id}`);
