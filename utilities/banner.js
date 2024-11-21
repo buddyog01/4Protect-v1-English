@@ -9,7 +9,7 @@ const footer = config.app.footer
 module.exports = {
     name: 'banner',
     usage: 'banner',
-    description: `Permet d'afficher la bannière d'un utilisateur.`,
+    description: `Allows you to display a user's banner.`,
     async execute(client, message, args) {
 
         let color = cl.fetch(`color_${message.guild.id}`)
