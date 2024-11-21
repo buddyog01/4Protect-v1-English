@@ -9,11 +9,11 @@ const p3 = new db.table("Perm3");
 module.exports = {
     name: 'all',
     usage: 'all <bots/admins>',
-    description: `Permet d'afficher la liste des administrateurs ou des bots présents sur le serveur.`,
+    description: `Allows you to display the list of administrators or bots present on the server.`,
     async execute(client, message, args) {
 
         if (!args[0]) {
-            return message.channel.send("Veuillez spécifier si vous souhaitez afficher les bots ou les admins.");
+            return message.channel.send("Please specify whether you want to display bots or admins.");
         }
 
         const perm2 = p2.fetch(`perm2_${message.guild.id}`);
@@ -40,14 +40,14 @@ module.exports = {
                 for (let i = 0; i < adminNames.length; i += 1995) {
                     const content = adminNames.substring(i, Math.min(adminNames.length, i + 1995));
                     var embed = new Discord.MessageEmbed()
-                        .setTitle(`Liste des Administrateurs.`)
+                        .setTitle(`List of Administrators.`)
                         .setDescription(`\n ${content}`)
                         .setFooter({ text: `Total : ${admins.size}` })
                         .setColor(color);
                     message.channel.send({ embeds: [embed] });
                 }
             } else {
-                return message.channel.send("Veuillez spécifier si vous souhaitez afficher les bots ou les admins.");
+                return message.channel.send("Please specify whether you want to display bots or admins.");
             }
         }
     }
