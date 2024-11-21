@@ -39,7 +39,7 @@ module.exports = {
             "HOUSE_BALANCE": "HypeSquad Balance",
             "EARLY_SUPPORTER": "Early",
             "TEAM_USER": "Team User",
-            "VERIFIED_BOT": "Bot Certifié",
+            "VERIFIED_BOT": "Certified Bot",
             "EARLY_VERIFIED_DEVELOPER": "Developer"
         };
 
@@ -56,15 +56,15 @@ module.exports = {
         const userFlags = mention.user.flags ? mention.user.flags.toArray() : [];
         const userBadges = userFlags.length ? userFlags.map(flag => flags[flag]).join(", ") : "None";
 
-        const bot = mention.user.bot ? "L'utilisateur est un bot" : "L'utilisateur est un humain";
+        const bot = mention.user.bot ? "The user is a Bot" : "The user is a Human";
 
         const userlol = new Discord.MessageEmbed()
             .setAuthor(`Informations`, usericon)
             .setThumbnail(usericon)
-            .addField(`General`, `Nom: \`${mention.user.username}\` \nSurnom: \`${nick}\``)
-            .addField(`Aperçu`, `Badges: \`${userBadges}\`\nBot: \`${bot}\``)
-            .addField(`Informations relatives au serveur`, `Roles: ${roles} \nPermissions: \`${finalPermissions.join(', ')}\``)
-            .addField(`Info`, `Compte créé le: \`${moment(mention.user.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\` \nA rejoint le serveur: \`${moment(mention.joinedAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\``)
+            .addField(`General`, `Name: \`${mention.user.username}\` \nNickname: \`${nick}\``)
+            .addField(`Preview`, `Badges: \`${userBadges}\`\nBot: \`${bot}\``)
+            .addField(`Server information`, `Roles: ${roles} \nPermissions: \`${finalPermissions.join(', ')}\``)
+            .addField(`Info`, `Account created on: \`${moment(mention.user.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\` \nJoined the server: \`${moment(mention.joinedAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\``)
             .setFooter(`ID: ${mention.user.id}`, usericon)
             .setColor(color);
 
